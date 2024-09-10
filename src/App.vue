@@ -36,7 +36,7 @@
         <el-header height="80px" style="padding: 0; margin: 0;">
           <el-container class="subHeader">
             <div class="desc">{{ desc }}</div>
-            <el-button style="width: 100px; height: 30px; margin: 20px;">新增记录</el-button>
+            <el-button @click="popMessage" style="width: 100px; height: 30px; margin: 20px;">新增记录</el-button>
           </el-container>
         </el-header>
         <el-main style="margin: 0; padding: 0;">
@@ -59,13 +59,17 @@
 
 <script>
 // import HelloWorld from './components/HelloWorld.vue'
-import { ref, reactive } from 'vue'
+import { ref, reactive, getCurrentInstance } from 'vue'
+import { ElMessage } from 'element-plus'
 export default {
   name: 'App',
   components: {
 
   },
   setup() {
+
+    const { appContext } = getCurrentInstance()
+
     let desc = ref('七年级1班学生统计')
     let stus = reactive([{ name: '小王', age: 14, sex: '男', date: '2020年8月15号' },
     { name: '小李', age: 21, sex: '女', date: '2020年8月25号' },
@@ -75,7 +79,32 @@ export default {
       let rank = st[Math.floor((index - 1) / 3)]
       desc.value = `${rank}年纪${((index - 1) % 3) + 1}班统计学生`
     }
-    return { desc, stus, selectFunc }
+    function popMessage() {
+      let appStr = JSON.stringify({ "a": 1, "b": 2, 'time': new Date(), "msg": "该功能待完善" })
+      ElMessage({ type: 'success', message: appStr, duration: 5000 }, appContext)
+    }
+    return { desc, stus, selectFunc, popMessage }
+  },
+  mounted() {
+    let ctx = getCurrentInstance().appContext.app
+    console.log('da:', new Date(), ' ctx:', ctx)
+
+    ElMessage({
+      type: "success",
+      message: '加载完成'
+    })
+
+    // ctx.axios.get('/myApi/simpleWeather/query?city=杭州&key=aa6c8be7ab68b9417183d0daaf83e740').then((resp) => {
+    //   console.log("resp.data:", resp.data)
+    //   let data = resp.data.result
+    //   ElMessage({
+    //     message: `${data.city}实时天气:${data.realtime.info}`,
+    //     type: 'success'
+    //   })
+    // }).catch((ex) => {
+    //   alert(ex)
+    // })
+
   }
 }
 </script>
