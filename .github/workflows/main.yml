@@ -4,10 +4,10 @@ name: CI Workflow  # 工作流名称
 on:
   push:            # 每当代码推送到仓库时触发
     branches:      # 仅在特定分支触发，例如 'main' 分支
-      - main
+      - master
   pull_request:    # 每当有人提交 pull request 时触发
     branches:
-      - main
+      - master
 
 # 定义工作流中的作业
 jobs:
