@@ -27,4 +27,4 @@ jobs:
         run: npm install  # 运行命令来安装项目依赖
 
       - name: Run tests
-        run: npm run serve  # 运行测试
+        run: npm build  # 运行测试
