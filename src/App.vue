@@ -67,33 +67,35 @@ export default {
 
   },
   setup() {
-
     const { appContext } = getCurrentInstance()
-
     let desc = ref('七年级1班学生统计')
-    let stus = reactive([{ name: '小王', age: 14, sex: '男', date: '2020年8月15号' },
-    { name: '小李', age: 21, sex: '女', date: '2020年8月25号' },
-    { name: '小秋', age: 18, sex: '女', date: '2020年4月21号' }])
     function selectFunc(index) {
       let st = ['七', '八', '九']
       let rank = st[Math.floor((index - 1) / 3)]
-      desc.value = `${rank}年纪${((index - 1) % 3) + 1}班统计学生`
+      desc = `${rank}年纪${((index - 1) % 3) + 1}班统计学生`
     }
     function popMessage() {
       let appStr = JSON.stringify({ "a": 1, "b": 2, 'time': new Date(), "msg": "该功能待完善" })
       ElMessage({ type: 'success', message: appStr, duration: 5000 }, appContext)
     }
+    let stus = reactive([{ name: '小王', age: 14, sex: '男', date: '2020年8月15号' },
+    { name: '小李', age: 21, sex: '女', date: '2020年8月25号' },
+    { name: '小秋', age: 18, sex: '女', date: '2020年4月21号' }])
+
     return { desc, stus, selectFunc, popMessage }
+  },
+  methods: {
+
   },
   mounted() {
     let ctx = getCurrentInstance().appContext.app
     console.log('da:', new Date(), ' ctx:', ctx)
-
+    // const { proxy } = getCurrentInstance()
     ElMessage({
       type: "success",
       message: '加载完成'
     })
-
+    console.log('this:', this.axios)
     // ctx.axios.get('/myApi/simpleWeather/query?city=杭州&key=aa6c8be7ab68b9417183d0daaf83e740').then((resp) => {
     //   console.log("resp.data:", resp.data)
     //   let data = resp.data.result
