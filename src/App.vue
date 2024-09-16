@@ -93,7 +93,7 @@ export default {
     // const { proxy } = getCurrentInstance()
     ElMessage({
       type: "success",
-      message: '加载完成666666'
+      message: '加载完成'
     })
     console.log('this:', this.axios)
     // ctx.axios.get('/myApi/simpleWeather/query?city=杭州&key=aa6c8be7ab68b9417183d0daaf83e740').then((resp) => {
