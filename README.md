@@ -11,6 +11,7 @@ npm run serve
 ```
 
 ### Compiles and minifies for production
+### 编译后的包名称为dist
 ```
 npm run build
 ```
