@@ -96,16 +96,16 @@ export default {
       message: '加载完成'
     })
     console.log('this:', this.axios)
-    // ctx.axios.get('/myApi/simpleWeather/query?city=杭州&key=aa6c8be7ab68b9417183d0daaf83e740').then((resp) => {
-    //   console.log("resp.data:", resp.data)
-    //   let data = resp.data.result
-    //   ElMessage({
-    //     message: `${data.city}实时天气:${data.realtime.info}`,
-    //     type: 'success'
-    //   })
-    // }).catch((ex) => {
-    //   alert(ex)
-    // })
+    ctx.axios.get('/myApi/simpleWeather/query?city=杭州&key=aa6c8be7ab68b9417183d0daaf83e740').then((resp) => {
+      console.log("resp.data:", resp.data)
+      let data = resp.data.result
+      ElMessage({
+        message: `${data.city}实时天气:${data.realtime.info}`,
+        type: 'success'
+      })
+    }).catch((ex) => {
+      ElMessage.error(ex)
+    })
 
   }
 }
